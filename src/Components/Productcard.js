@@ -3,7 +3,7 @@ import "./Product";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 
 export default function Productcard(props) {
- const {id, price, title, description} = data
+ const {id, price, title, description} = props.data
   return (
     <>
       <div className="container">
