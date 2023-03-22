@@ -1,10 +1,22 @@
 import React,{useState} from "react";
 import "../Product";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
+import { Addtocart,removetocart } from "../Services/Actions/action";
 
 export default function Productcard(props) {
  const { id, price, title, description } = props.data;
+ const data = {
+  id,
+  price,
+  title,
+  description,
+ }
+ const items = useSelector((state) => state.cartreducer.carts);
+ const dispatch = useDispatch();
+ const sendcart = (data)=>{
+  dispatch(Addtocart(data))
+ }
 
   return (
     <>
@@ -15,10 +27,12 @@ export default function Productcard(props) {
             <CardBody>
               <div className="d-flex justify-content-between" >
               <CardTitle tag="h5" className="text-start" key={id}>{title}</CardTitle>
-              <CardTitle tag='h5' className=" btn btn-dark">Rs.{price}</CardTitle>
+              <CardTitle tag='h5' className=" btn btn-dark">${price}</CardTitle>
               </div>
               <CardText className="d-flex text-muted">{description}</CardText>
-              <button className="btn btn-outline-primary d-flex justify-content-center">Add to Cart</button>
+              <button 
+              onClick={()=>sendcart(data)}
+              className="btn btn-outline-primary d-flex justify-content-center">Add to Cart</button>
             </CardBody>
           </Card>
           </div>

@@ -1,41 +1,68 @@
 import { ADD_TO_CART, REMOVE_TO_CART } from "../Constant";
 
 const initialState = {
-  cartItems: [],
-  loading: false,
+  carts: [],
+  total: 0,
 };
 
 export const cartreducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const itemToAdd = action.payload;
-      const existingItemIndex = state.cartItems.findIndex(
-        (item) => item.id === itemToAdd.id
+      const IteamIndex = state.carts.findIndex(
+        (iteam) => iteam.id === action.payload.id
       );
-      if (existingItemIndex >= 0) {
-        const updatedCartItems = [...state.cartItems];
-        updatedCartItems[existingItemIndex].quantity += itemToAdd.quantity;
+      if (IteamIndex >= 0) {
+        state.carts[IteamIndex].qnty += 1;
         return {
           ...state,
-          cartItems: updatedCartItems,
+          total: state.total + action.payload.price,
+          carts: [...state.carts],
         };
       } else {
+        const temp = { ...action.payload, qnty: 1 };
         return {
           ...state,
-          cartItems: [...state.cartItems, itemToAdd],
+          total: state.total + 1,
+          carts: [...state.carts, temp],
         };
       }
 
     case REMOVE_TO_CART:
-
-      const itemToRemove = action.payload;
-      const updatedCartItems = state.cartItems.filter(
-        (item) => item.id !== itemToRemove.id
+      const cartItemIndex = state.carts.findIndex(
+        (item) => item.id === action.payload.id
       );
-      return {
-        ...state,
-        cartItems: updatedCartItems,
-      };
+
+      if (cartItemIndex >= 0) {
+        const updatedCart = [...state.carts];
+        const existingCartItem = updatedCart[cartItemIndex];
+
+        if (action.payload.isIncrement) {
+          existingCartItem.qnty++;
+        } else {
+          existingCartItem.qnty--;
+          if (existingCartItem.qnty === 0) {
+            updatedCart.splice(cartItemIndex, 1);
+          }
+        }
+
+        return {
+          ...state,
+          total: state.total - 1,
+          carts: updatedCart,
+        };
+      } else {
+        return {
+          ...state,
+          total: state.total - 1,
+          carts: [
+            ...state.carts,
+            {
+              ...action.payload,
+              qnty: 1,
+            },
+          ],
+        };
+      }
     default:
       return {
         ...state,
