@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Cart from "./Cart";
-import "../Services/Reducer/reducer";
+import "../../Redux/Reducer/reducer";
 import { useSelector, useDispatch } from "react-redux";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import Menu from "@mui/material/Menu";
@@ -24,7 +24,7 @@ export default function Navbar(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+// Navbar
   return (
     <>
       <nav className="navbar navbar-light bg-dark">
@@ -33,8 +33,8 @@ export default function Navbar(props) {
           <form className="form-inline">
             <Button
             >
-              <NavLink to={`cart/${items.id}`}>MYCART</NavLink>
-               
+              <NavLink to={`cart/${items.id}`} style={{textDecoration: 'none'}} className='text-primary'>MYCART</NavLink>
+              &nbsp;
               <Badge badgeContent={items.length} color="primary">
                 <BsFillCartCheckFill/>
               </Badge>

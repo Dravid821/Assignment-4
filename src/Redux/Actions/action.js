@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ADD_TO_CART, REMOVE_TO_CART} from "../Constant";
+import { ADD_TO_CART, REMOVE_TO_CART} from "./type";
 
 export const Addtocart = (item) => {
     return {
