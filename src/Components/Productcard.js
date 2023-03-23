@@ -32,7 +32,7 @@ export default function Productcard(props) {
               <CardText className="d-flex text-muted">{description}</CardText>
               <button 
               onClick={()=>sendcart(data)}
-              className="btn btn-outline-primary d-flex justify-content-center">Add to Cart</button>
+              className="btn btn-outline-primary d-flex justify-content-end btn1">Add to Cart</button>
             </CardBody>
           </Card>
           </div>

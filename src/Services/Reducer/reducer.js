@@ -2,7 +2,7 @@ import { ADD_TO_CART, REMOVE_TO_CART } from "../Constant";
 
 const initialState = {
   carts: [],
-  total: 0,
+  qnty:0,
 };
 
 export const cartreducer = (state = initialState, action) => {
@@ -15,14 +15,12 @@ export const cartreducer = (state = initialState, action) => {
         state.carts[IteamIndex].qnty += 1;
         return {
           ...state,
-          total: state.total + action.payload.price,
           carts: [...state.carts],
         };
       } else {
         const temp = { ...action.payload, qnty: 1 };
         return {
           ...state,
-          total: state.total + 1,
           carts: [...state.carts, temp],
         };
       }
@@ -47,13 +45,11 @@ export const cartreducer = (state = initialState, action) => {
 
         return {
           ...state,
-          total: state.total - 1,
           carts: updatedCart,
         };
       } else {
         return {
           ...state,
-          total: state.total - 1,
           carts: [
             ...state.carts,
             {

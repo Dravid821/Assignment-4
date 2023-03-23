@@ -38,36 +38,36 @@ export default function Cart() {
         {items
           ? items.map((item) => {
               return (
-                <div className="container">
+                <div className="container bg-light">
                   <div className="row d-flex justify-content-center">
                     <Card
                       key={item.id}
-                      className="my-2 bg-dark"
+                      className="my-2"
                       style={{
                         width: "20rem",
                       }}
                     >
-                      <CardHeader className="text-white">
+                      <CardHeader className="">
                         {item.title}
                       </CardHeader>
                       <CardBody>
-                        <CardText className="btn btn-white">
-                          <span className="btn-outline-secondary text-white">X:{item.qnty}</span>
+                        <CardText className="btn text-dark">
+                          <span className="btn-outline-secondary text-dark">X:{item.qnty}</span>
                         </CardText>
                         <div className="d-flex justify-content-between">
                           <button
                             onClick={() => decrement(item)}
-                            className="btn btn-info"
+                            className="btn btn-secondary"
                           >
                             -
                           </button>
                           <button
-                            className="btn btn-primary"
+                            className="btn btn-secondary"
                             onClick={() => increment(item)}
                           >
                             +
                           </button>
-                    <div className="btn btn-danger">total:${item.qnty * item.price}</div>
+                    <div className="btn btn-dark">total:${item.qnty * item.price}</div>
                           
                         </div>
                       </CardBody>
