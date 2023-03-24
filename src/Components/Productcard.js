@@ -3,7 +3,6 @@ import "./Product";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 import { useDispatch,useSelector} from "react-redux";
 import { Addtocart,removetocart } from "../Redux/Actions/action";
-import { width } from "@mui/system";
 
 export default function Productcard(props) {
  const { id, price, title, description } = props.data;
@@ -16,8 +15,8 @@ export default function Productcard(props) {
  //ADD_TO_CART Method Calling
  const items = useSelector((state) => state.cartreducer.carts);
  const dispatch = useDispatch();
- const sendcart = (data)=>{
-  dispatch(Addtocart(data))
+ const sendcart = (items)=>{
+  dispatch(Addtocart(items))
  }
 //
   return (

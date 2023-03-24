@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Label } from "reactstrap";
 import { Addtocart, removetocart } from "../../Redux/Actions/action";
 import { NavLink } from "react-router-dom";
 import { Card, CardBody, CardText, CardHeader } from "reactstrap";
-import { width } from "@mui/system";
 export default function Cart() {
   const items = useSelector((state) => state.cartreducer.carts);
   console.log(items);
@@ -33,7 +32,7 @@ export default function Cart() {
                       width: "23rem",
                     }}
                   >
-                    <CardHeader className="">{item.title}</CardHeader>
+                    <CardHeader className=""><h5 className="text-secondary">{item.title}</h5></CardHeader>
                     <CardBody>
                       <div>
                         <CardText className="btn text-dark">
@@ -73,7 +72,7 @@ export default function Cart() {
             );
           })
         )}
-        <NavLink style={{ textDecoration: "none" }} to={`/product`}>
+        <NavLink style={{ textDecoration: "none" }} to={`/`}>
           <button
             className="btn btn-secondary navbar-brand h4 text-white mt-5"
             color="none"
